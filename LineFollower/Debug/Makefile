@@ -37,6 +37,8 @@ SUBDIRS :=
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
+../bluetooth.c \
+../config.c \
 ../main.c
 
 
@@ -47,15 +49,23 @@ ASM_SRCS +=
 
 
 OBJS +=  \
+bluetooth.o \
+config.o \
 main.o
 
 OBJS_AS_ARGS +=  \
+bluetooth.o \
+config.o \
 main.o
 
 C_DEPS +=  \
+bluetooth.d \
+config.d \
 main.d
 
 C_DEPS_AS_ARGS +=  \
+bluetooth.d \
+config.d \
 main.d
 
 OUTPUT_FILE_PATH +=LineFollower.elf
@@ -72,6 +82,10 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
+
+
 
 
 
