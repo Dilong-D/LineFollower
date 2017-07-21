@@ -147,21 +147,15 @@ void setall(void){
 	setbat();
 	bluetooth_init();
 	
-	TWI_MasterInit();
-	enableDefault();
-	
 	//==============================	timery		=========================================================
 	TCD1.INTCTRLA     =    TC_OVFINTLVL_LO_gc;         // przepe³nienie ma generowaæ przerwanie LO
-	
 	TCD1.CTRLB        =    TC_WGMODE_NORMAL_gc;        // tryb normalny
-	
 	TCD1.PER = 156*5;
 	
 	TCC1.INTCTRLA     =    TC_OVFINTLVL_HI_gc;         // przepe³nienie ma generowaæ przerwanie LO
-	
 	TCC1.CTRLB        =    TC_WGMODE_NORMAL_gc;        // tryb normalny
-	
 	TCC1.PER = 156;
+	
 	TCD1.CTRLA        =    TC_CLKSEL_DIV1024_gc;
 	TCC1.CTRLA        =    TC_CLKSEL_DIV1024_gc;
 	sei();
