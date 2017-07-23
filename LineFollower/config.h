@@ -27,9 +27,8 @@
 #define t_int 5.12 //czas miedzy dwoma przerwaniami dla PID i wyliczania pozycji.
 
 //------------FUNKCJE-----------
-void setMotorL(void);//ustawia piny silnika L
+void setMotors(void);//ustawia piny silnikach
 void motorL(int8_t o, int8_t k);//zadaje wypelnienie PWM i kierunek silniku L
-void setMotorR(void);//ustawia piny silnika R
 void motorR(int8_t o, int8_t k);//zadaje wypelnienie PWM i kierunek silniku L
 void OscXtal(void);
 void setall(void);//ustawia wszystko

@@ -35,29 +35,29 @@ void Osc32MHz(void) {
 	_delay_ms(1000);
 }
 
-void setMotorL(void){
+void setMotors(void){
 	//------------ustawienia silnika 1
 	PORTD.DIRSET	=	PIN5_bm|//inpu2
 	PIN4_bm|//input1
 	PIN3_bm;//pwm
 	PORTD.OUTCLR	=	PIN5_bm;//input 1->0
 	PORTD.OUTCLR	=	PIN4_bm;//input 2->0
-	TCD0.CTRLB		=	TC_WGMODE_SINGLESLOPE_gc|		// pwm singleslope
-	TC0_CCDEN_bm|
-	TC0_CCAEN_bm;
-	TCD0.PER		=	500;
-	TCD0.CCD		=	0;
-	TCD0.CTRLA		=	TC_CLKSEL_DIV1_gc;
-}
-void setMotorR(void){
 	//------------ustawienia silnika 2
 	PORTD.DIRSET	=	PIN2_bm|//inpu2
 	PIN1_bm|//input1
 	PIN0_bm;//pwm
 	PORTD.OUTCLR	=	PIN1_bm;//input 1->0
 	PORTD.OUTCLR	=	PIN2_bm;//input 2->0
+	
+	TCD0.CTRLB		=	TC_WGMODE_SINGLESLOPE_gc|		// pwm singleslope
+	TC0_CCDEN_bm|
+	TC0_CCAEN_bm;
+	TCD0.PER		=	500;
+	TCD0.CCD		=	0;
 	TCD0.CCA		=	0;
+	TCD0.CTRLA		=	TC_CLKSEL_DIV1_gc;
 }
+
 void motorR(int8_t o, int8_t k){ //kierowanie silnikiem prawym
 	TCD0.CCD		=	5*o;
 	if(k==LUZ){
@@ -131,8 +131,7 @@ void setall(void){
 	TCF0.CTRLD			=   TC_EVACT_QDEC_gc |                // w³¹czenie dekodera kwadraturowego
 							TC_EVSEL_CH2_gc;                  // dekoder zlicza impulsy z kana³u 0*/
 	//==============================	wyjscia		=========================================================
-	setMotorL();
-	setMotorR();
+	setMotors();
 	//-----------------------------------diody IR--------------------------------------
 	
 	//-----------------------------------diody LED--------------------------------------
@@ -176,7 +175,7 @@ void setall(void){
 	// konfiguracja komparatora 0 w porcie A
 	PORTF_OUTSET=PIN7_bm;
 	ACA.AC0MUXCTRL		=	AC_MUXPOS_PIN2_gc |
-	AC_MUXNEG_SCALER_gc;    // wejœcie + PIN A6
+							AC_MUXNEG_SCALER_gc;    // wejœcie + PIN A6
 	ACA.AC0CTRL			=	AC_ENABLE_bm|AC_HYSMODE_SMALL_gc|AC_INTLVL_LO_gc|AC_INTMODE_FALLING_gc;
 	ACA.CTRLB			=	45;                    // pocz¹tkowe ustawienie dzielnika napiêcia
 	ACA.CTRLA			=	AC_AC0OUT_bm;

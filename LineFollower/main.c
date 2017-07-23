@@ -17,32 +17,32 @@
 /*
 Opis portów
 port	funkcja		
-D0	-	PWM	MOTOR R
-D1	-	INPUT MOTOR 2 R
-D2	-	INPUT MOTOR 1 R
-D3	-	PWM	MOTOR L
-D4	-	INPUT 2 MOTOR L
-D5	-	INPUT 1	MOTOR L
-C0	-	enkoder MOTOR L
-C1	-	enkoder	MOTOR L
-F0	-	enkoder MOTOR R
-F1	-	enkoder	MOTOR R
-E4,E5,E6,E7	-	dioda IR
-B0-B4	-	fototranzystory
-C3-C7-	lcd
+A2		-	POZIOM BATERII			-		ZROBIONE
+A3-A6	-	ODCZYT FOTOTRANZYSTOROW	-		NIE ZROBIONE
+B4-B7	-	ODCZYT FOTOTRANZYSTOROW -		NIEZROBIONE
+C0-C1	-	ENKODER MOTOR L			-		ZROBIONE
+C2-C3	-	BLUETOOTH				-		ZROBIONE
+D0		-	PWM	MOTOR R				-		ZROBIONE
+D1		-	INPUT MOTOR 2 R			-		ZROBIONE
+D2		-	INPUT MOTOR 1 R			-		ZROBIONE
+D3		-	PWM	MOTOR L				-		ZROBIONE
+D4		-	INPUT 2 MOTOR L			-		ZROBIONE
+D5		-	INPUT 1	MOTOR L			-		ZROBIONE
+F0-F1	-	ENKODER MOTOR R			-		ZROBIONE
+F2-F3	-	PRZYCISKI				-		ZROBIONE
+F5-F7	-	DIODY LED				-		ZROBIONE
 */
 
 
-//Przerwanie przycisk dol
+//Przerwanie przycisk
 ISR(PORTF_INT0_vect){
 }
-//Przerwanie przycisk gora
+//Przerwanie przycisk
 ISR(PORTF_INT1_vect){	
-
 }
 //przerwanie pomiar baterii
 ISR(ACA_AC0_vect){
-	PORTF_OUTTGL=PIN7_bm;//zmiena stanu diody gdy bateria jest poni¿ej poziomu dopuszczalnego
+	PORTF_OUTCLR=PIN7_bm;//zmiena stanu diody gdy bateria jest poni¿ej poziomu dopuszczalnego
 }
 
 ISR(TCD1_OVF_vect){
@@ -53,7 +53,6 @@ ISR(TCC1_OVF_vect){
 
 ISR(OSC_OSCF_vect) {									// przerwanie w razie awarii oscylatora
 	OSC.XOSCFAIL	|=	OSC_XOSCFDIF_bm;				// kasowanie flagi przerwania
-	
 }
 
 
